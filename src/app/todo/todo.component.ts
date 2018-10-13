@@ -21,7 +21,25 @@ export class TodoComponent implements OnInit {
         x["$key"] = element.key;
         this.toDoListArray.push(x);
       })
+      //sort array isChecked false --> true
+      this.toDoListArray.sort((a,b)=> {
+        return a.isChecked - b.isChecked;
+      })
     });
+  }
+
+  
+ 
+  //Receive title from textbox 
+  onAdd(itemTitle){
+    this.toDoService.addTitle(itemTitle.value);
+    itemTitle.value = null;
+  }
+  alterCheck($key: string,isChecked){
+    this.toDoService.checkOrUncheckTitle($key,!isChecked);
+  }
+  onDelete($key:string){
+    this.toDoService.removeTitle($key);
   }
 
 }
