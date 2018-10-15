@@ -1,45 +1,44 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoService } from './shared/todo.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.css'],
-  providers : [TodoService]
+  providers: [TodoService]
 })
 export class TodoComponent implements OnInit {
-
   toDoListArray: any[];
-  constructor(private toDoService : TodoService) { }
-
+  constructor(private toDoService: TodoService) {}
 
   ngOnInit() {
-    this.toDoService.gettoDoList().snapshotChanges().subscribe(item =>{
-      this.toDoListArray = [];
-      item.forEach(element => {
-        var x = element.payload.toJSON();
-        x["$key"] = element.key;
-        this.toDoListArray.push(x);
-      })
-      //sort array isChecked false --> true
-      this.toDoListArray.sort((a,b)=> {
-        return a.isChecked - b.isChecked;
-      })
-    });
+    this.toDoService
+      .gettoDoList()
+      .snapshotChanges()
+      .subscribe(item => {
+        this.toDoListArray = [];
+        item.forEach(element => {
+          const x = element.payload.toJSON();
+          x['$key'] = element.key;
+          this.toDoListArray.push(x);
+        });
+        // sort array isChecked false --> true
+        this.toDoListArray.sort((a, b) => {
+          return a.isChecked - b.isChecked;
+        });
+      });
   }
 
-  
- 
-  //Receive title from textbox 
-  onAdd(itemTitle){
+  // Receive title from textbox
+  onAdd(itemTitle) {
     this.toDoService.addTitle(itemTitle.value);
     itemTitle.value = null;
   }
-  alterCheck($key: string,isChecked){
-    this.toDoService.checkOrUncheckTitle($key,!isChecked);
+  alterCheck($key: string, isChecked) {
+    this.toDoService.checkOrUncheckTitle($key, !isChecked);
   }
-  onDelete($key:string){
+  onDelete($key: string) {
     this.toDoService.removeTitle($key);
   }
-
 }
