@@ -35,17 +35,21 @@ export class MyTodoListComponent implements OnInit {
         this.todoList.sort((a, b) => {
           return b.dateAdded - a.dateAdded;
         });
-        const temp: TODO[] = [];
-        let d = this.todoList[0].dateAdded;
+        let temp: TODO[] = [];
+        let d = new Date(this.todoList[0].dateAdded).toDateString();
         this.todoList.forEach(td => {
-          if (td.dateAdded === d) {
+          const dVal = new Date(td.dateAdded).toDateString();
+          if (dVal === d) {
             temp.push(td);
           } else {
             this.filteredList.push(temp);
+            temp = [];
+            temp.push(td);
           }
-          d = td.dateAdded;
+          d = dVal;
         });
         this.filteredList.push(temp);
+        console.log(this.filteredList);
       });
   }
 }
