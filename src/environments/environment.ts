@@ -12,13 +12,22 @@ export const environment = {
   //   storageBucket: "todolistapp-7e4df.appspot.com",
   //   messagingSenderId: "452608278933"
   // },
+  // ghanshyam's firebase details
+  // firebase: {
+  //   apiKey: 'AIzaSyA2NGcE7BkYWq6u7SCnIvMx4vEBn_Osilo',
+  //   authDomain: 'ng-todo-app-13f2f.firebaseapp.com',
+  //   databaseURL: 'https://ng-todo-app-13f2f.firebaseio.com',
+  //   projectId: 'ng-todo-app-13f2f',
+  //   storageBucket: 'ng-todo-app-13f2f.appspot.com',
+  //   messagingSenderId: '339525944624'
+  // }
   firebase: {
-    apiKey: 'AIzaSyA2NGcE7BkYWq6u7SCnIvMx4vEBn_Osilo',
-    authDomain: 'ng-todo-app-13f2f.firebaseapp.com',
-    databaseURL: 'https://ng-todo-app-13f2f.firebaseio.com',
-    projectId: 'ng-todo-app-13f2f',
-    storageBucket: 'ng-todo-app-13f2f.appspot.com',
-    messagingSenderId: '339525944624'
+    apiKey: "AIzaSyAVsGs_yHYOFMBcrp7AdBfGzVvLG89pRSQ",
+    authDomain: "todolistapp-80747.firebaseapp.com",
+    databaseURL: "https://todolistapp-80747.firebaseio.com",
+    projectId: "todolistapp-80747",
+    storageBucket: "todolistapp-80747.appspot.com",
+    messagingSenderId: "609406926062"
   }
 };
 
