@@ -8,15 +8,16 @@ export class TodoService {
   toDoList: AngularFireList<any>;
 
   constructor(private firebasedb: AngularFireDatabase) {}
-  gettoDoList() {
-    this.toDoList = this.firebasedb.list('titles');
+  gettoDoList(id: string) {
+    this.toDoList = this.firebasedb.list(`titles/${id}`);
     console.log(this.toDoList);
     return this.toDoList;
   }
   // Adding new items in list
-  addTitle(title: string) {
+  addTitle(id: string, title: string) {
     this.toDoList.push({
       title: title,
+      dateAdded: Date.now(),
       isChecked: false
     });
   }

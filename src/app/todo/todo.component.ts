@@ -2,19 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { TodoService } from './shared/todo.service';
 import { Observable } from 'rxjs';
 
+import * as firebase from 'firebase';
+
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.css'],
-  providers: [TodoService]
+  styleUrls: ['./todo.component.css']
 })
 export class TodoComponent implements OnInit {
   toDoListArray: any[];
+  uId: string;
   constructor(private toDoService: TodoService) {}
 
   ngOnInit() {
+    this.uId = firebase.auth().currentUser.uid;
     this.toDoService
-      .gettoDoList()
+      .gettoDoList(this.uId)
       .snapshotChanges()
       .subscribe(item => {
         this.toDoListArray = [];
@@ -32,7 +35,7 @@ export class TodoComponent implements OnInit {
 
   // Receive title from textbox
   onAdd(itemTitle) {
-    this.toDoService.addTitle(itemTitle.value);
+    this.toDoService.addTitle(this.uId, itemTitle.value);
     itemTitle.value = null;
   }
   alterCheck($key: string, isChecked) {
