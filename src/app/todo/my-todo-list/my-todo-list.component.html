@@ -8,13 +8,15 @@
         </button>
       </h5>
     </div>
-
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body">
         <!-- Insert TODOs here -->
         <ul class="list-group">
           <li class="list-group-item" *ngFor="let to of t">
             {{ to.title }}
+            <span style="float: right;">
+              <i>{{ (to.isChecked ? 'Finished' : 'Yet to finish') }}</i>
+            </span>
           </li>
         </ul>
       </div>
